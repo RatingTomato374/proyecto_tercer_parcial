@@ -19,6 +19,8 @@ Este proyecto implementa un sistema de acceso basado en el reconocimiento facial
   - `numpy`
 - Base de datos SQLite para almacenamiento de usuarios e imágenes
 
+### Instalacion
+
 ```bash
 1.- git clone <URL-del-repositorio>  
 2.- cd proyecto_tercer_parcial  
