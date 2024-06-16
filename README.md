@@ -2,19 +2,22 @@
 
 ## Descripción del Proyecto
 
-Este proyecto implementa un sistema de registro y acceso utilizando reconocimiento facial. Los usuarios pueden registrarse capturando una foto, y luego iniciar sesión utilizando su rostro o credenciales tradicionales (nombre de usuario y contraseña). Además, se incluye la funcionalidad para dar de baja usuarios existentes.
+Este proyecto implementa un sistema de acceso basado en el reconocimiento facial utilizando Python y diversas bibliotecas. Los usuarios pueden registrarse capturando una foto, y luego iniciar sesión utilizando su rostro o credenciales tradicionales (nombre de usuario y contraseña). También se incluye la funcionalidad para dar de baja usuarios existentes.
 
 ## Requisitos del Sistema
 
+### Hardware
+- Cámara web (para capturar y reconocer rostros)
+- Sistema operativo Windows, macOS o Linux
+
+### Software
 - Python 3.10+
 - Librerías de Python:
   - `opencv-python`
   - `Pillow`
-  - `tkinter`
+  - `tkinter` (normalmente incluido con Python)
   - `numpy`
 - Base de datos SQLite para almacenamiento de usuarios e imágenes
-
-## Instalación
 
 ```bash
 1.- git clone <URL-del-repositorio>  
