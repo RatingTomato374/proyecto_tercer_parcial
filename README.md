@@ -16,8 +16,6 @@ Este proyecto implementa un sistema de registro y acceso utilizando reconocimien
 
 ## Instalación
 
-### Paso 1: Clonar el repositorio
-
 ```bash
 1.- git clone <URL-del-repositorio>  
 2.- cd proyecto_tercer_parcial  
