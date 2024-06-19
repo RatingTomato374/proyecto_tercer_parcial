@@ -3,21 +3,53 @@ import cv2
 from tkinter import simpledialog, Tk, messagebox
 import numpy as np
 
+# Función para dibujar guías en el frame
+def draw_guides(frame):
+    # Dimensiones del frame
+    height, width = frame.shape[:2]
+
+    # Coordenadas del centro
+    center_x, center_y = width // 2, height // 2
+
+    # Tamaño del rectángulo de guía
+    box_size = 200
+
+    # Coordenadas del rectángulo
+    top_left = (center_x - box_size // 2, center_y - box_size // 2)
+    bottom_right = (center_x + box_size // 2, center_y + box_size // 2)
+
+    # Dibujar el rectángulo de guía
+    cv2.rectangle(frame, top_left, bottom_right, (0, 255, 0), 2)
+
+    # Dibujar líneas guía (opcional)
+    cv2.line(frame, (center_x, 0), (center_x, height), (0, 255, 0), 1)
+    cv2.line(frame, (0, center_y), (width, center_y), (0, 255, 0), 1)
+
+    return frame
+
 # Función para capturar la imagen del usuario
 def capture_image(username):
     # Inicializar la cámara
     cam = cv2.VideoCapture(0)
-    # Crear una ventana para mostrar la imagen
     cv2.namedWindow("Capture Image")
+
+    frame_to_save = None
 
     while True:
         # Leer un frame de la cámara
         ret, frame = cam.read()
-        # Mostrar el frame en la ventana
-        cv2.imshow("Capture Image", frame)
         # Si no se puede leer el frame, salir del bucle
         if not ret:
             break
+
+        # Guardar el frame sin guías para después
+        frame_to_save = frame.copy()
+
+        # Dibujar guías en el frame
+        frame_with_guides = draw_guides(frame)
+
+        # Mostrar el frame con guías en la ventana
+        cv2.imshow("Capture Image", frame_with_guides)
         # Leer una tecla presionada
         k = cv2.waitKey(1)
         # Si se presiona la tecla Esc, salir del bucle
@@ -27,8 +59,8 @@ def capture_image(username):
         elif k % 256 == 32:
             # Crear el nombre de la imagen con el username
             img_name = f"imagenes/{username}.png"
-            # Guardar la imagen en el disco
-            cv2.imwrite(img_name, frame)
+            # Guardar la imagen en el disco sin las guías
+            cv2.imwrite(img_name, frame_to_save)
             print(f"Imagen {img_name} guardada!")
             break
 
